@@ -1,0 +1,82 @@
+{
+  "name": "vscode-scss-alias",
+  "displayName": "SCSS Alias",
+  "description": "Visual Studio Code click-to-go SCSS import/alias resolver for @use/@import syntax.",
+  "main": "./dist/extension.js",
+  "version": "1.0.0",
+  "publisher": "wanderlima",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "icon": "icon.png",
+  "categories": [
+    "Other",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "scss",
+    "sass",
+    "alias",
+    "go to definition",
+    "clickable",
+    "navigation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wanderlima/vscode-scss-alias"
+  },
+  "bugs": {
+    "url": "https://github.com/wanderlima/vscode-scss-alias/issues"
+  },
+  "homepage": "https://github.com/wanderlima/vscode-scss-alias",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscodeScssAlias.setupAliases",
+        "title": "SCSS Alias: Setup Project Configuration"
+      },
+      {
+        "command": "vscodeScssAlias.reloadAliases",
+        "title": "SCSS Alias: Reload Aliases"
+      }
+    ],
+    "configuration": {
+      "title": "SCSS Alias Resolver",
+      "properties": {
+        "vscodeScssAlias.aliases": {
+          "type": "object",
+          "description": "Define your SCSS alias mappings. Keys are aliases (e.g., @scss), values are relative paths (e.g., src/scss).",
+          "default": {
+            "@scss": "src/scss"
+          }
+        }
+      }
+    }
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "activationEvents": [
+    "onLanguage:scss",
+    "onLanguage:sass"
+  ],
+  "files": [
+    "dist",
+    "icon.png",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "compile": "tsc -p .",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "@types/vscode": "^1.100.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3",
+    "vsce": "^2.15.0",
+    "vscode-test": "^1.6.1"
+  }
+}

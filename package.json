@@ -63,7 +63,8 @@
   ],
   "activationEvents": [
     "onLanguage:scss",
-    "onLanguage:sass"
+    "onLanguage:sass",
+    "onLanguage:vue"
   ],
   "files": [
     "dist",

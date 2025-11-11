@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-  const SUPPORTED_LANGUAGES = ['scss', 'sass'];
+  const SUPPORTED_LANGUAGES = ['scss', 'sass', 'vue'];
 
   function getAliasConfig(): Record<string, string> {
     return (

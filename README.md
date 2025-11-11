@@ -7,6 +7,7 @@
 ## ✨ Features
 
 - Supports SCSS and Sass syntax
+- Supports Vue files with `<style lang="scss">` blocks
 - Resolves imports using aliases like `@scss/` or `@mixins/`
 - Works with `@use`, `@forward`, and `@import`
 - Handles multiple SCSS resolution patterns including:
@@ -16,11 +17,28 @@
 
 ## 💡 Example Usage
 
+### SCSS/Sass Files
+
 Given this import:
 
 ```scss
 @use '@mixins/spacing';
 @use '@scss/components/button';
+```
+
+### Vue Files
+
+In Vue files with `<style lang="scss">` blocks:
+
+```vue
+<template>
+  <div class="container">Hello</div>
+</template>
+
+<style lang="scss">
+@use '@mixins/spacing';
+@use '@scss/components/button';
+</style>
 ```
 
 You can then `Cmd+Click` or `Ctrl+Click` to go directly to that file. The `right click` and `Go to definition` works too.
@@ -56,7 +74,11 @@ This extension only affects your editor experience — you still need to configu
 
 ## 🧩 Contribution
 
-Feel free to open issues or submit pull requests to improve functionality or add support for other use cases.
+Feel free to open [issues](https://github.com/wanderlima/vscode-scss-alias/issues) to report bugs, request features, or suggest improvements.
+
+## 📦 Publishing
+
+This extension is published to both [VS Code Marketplace](https://marketplace.visualstudio.com/) and [Open VSX](https://open-vsx.org/) (for Cursor and other compatible editors).
 
 ## 📜 License
 

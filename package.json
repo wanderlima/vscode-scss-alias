@@ -3,10 +3,10 @@
   "displayName": "SCSS Alias",
   "description": "Visual Studio Code extension, click-to-go SCSS import/alias resolver for @use/@import syntax.",
   "main": "./dist/extension.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "wanderlima",
   "engines": {
-    "vscode": "^1.100.0"
+    "vscode": "^1.70.0"
   },
   "icon": "icon.png",
   "categories": [
@@ -80,7 +80,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.15.29",
-    "@types/vscode": "^1.100.0",
+    "@types/vscode": "^1.70.0",
     "ovsx": "^0.9.1",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",

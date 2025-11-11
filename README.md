@@ -56,7 +56,11 @@ This extension only affects your editor experience — you still need to configu
 
 ## 🧩 Contribution
 
-Feel free to open issues or submit pull requests to improve functionality or add support for other use cases.
+Feel free to open [issues](https://github.com/wanderlima/vscode-scss-alias/issues) to report bugs, request features, or suggest improvements.
+
+## 📦 Publishing
+
+This extension is published to both [VS Code Marketplace](https://marketplace.visualstudio.com/) and [Open VSX](https://open-vsx.org/) (for Cursor and other compatible editors).
 
 ## 📜 License
 

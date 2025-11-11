@@ -49,6 +49,11 @@
           "default": {
             "@scss": "src/scss"
           }
+        },
+        "vscodeScssAlias.debug": {
+          "type": "boolean",
+          "description": "Enable debug logging for troubleshooting.",
+          "default": false
         }
       }
     }
@@ -69,11 +74,13 @@
   "scripts": {
     "compile": "tsc -p .",
     "package": "vsce package",
-    "publish": "vsce publish"
+    "publish": "vsce publish",
+    "publish:openvsx": "ovsx publish"
   },
   "devDependencies": {
     "@types/node": "^22.15.29",
     "@types/vscode": "^1.100.0",
+    "ovsx": "^0.9.1",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
     "vsce": "^2.15.0",

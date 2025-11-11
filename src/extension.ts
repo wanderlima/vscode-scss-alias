@@ -13,10 +13,22 @@ export function activate(context: vscode.ExtensionContext) {
     );
   }
 
-  const workspaceFolder =
-    vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
+  function getWorkspaceFolder(documentUri?: vscode.Uri): string | undefined {
+    // Try to get workspace folder from document URI first
+    if (documentUri) {
+      const workspaceFolder = vscode.workspace.getWorkspaceFolder(documentUri);
+      if (workspaceFolder) {
+        return workspaceFolder.uri.fsPath;
+      }
+    }
+    // Fallback to first workspace folder
+    return vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+  }
 
-  function resolveImportTarget(importPath: string): string | undefined {
+  function resolveImportTarget(
+    importPath: string,
+    documentUri?: vscode.Uri,
+  ): string | undefined {
     const aliasConfig = getAliasConfig();
 
     const aliasEntry = Object.entries(aliasConfig).find(([alias]) =>
@@ -24,6 +36,12 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     if (!aliasEntry) {
+      return undefined;
+    }
+
+    const workspaceFolder = getWorkspaceFolder(documentUri);
+    if (!workspaceFolder) {
+      logDebug('No workspace folder found');
       return undefined;
     }
 
@@ -47,7 +65,13 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   function logDebug(message: string) {
-    if (process.env.NODE_ENV === 'development') {
+    // Enable debug logging via configuration or environment variable
+    const config = vscode.workspace.getConfiguration('vscodeScssAlias');
+    const debugEnabled =
+      config.get<boolean>('debug', false) ||
+      process.env.NODE_ENV === 'development';
+
+    if (debugEnabled) {
       console.log(`[scss-alias] ${message}`);
     }
   }
@@ -63,7 +87,7 @@ export function activate(context: vscode.ExtensionContext) {
           return;
         }
 
-        const targetFile = resolveImportTarget(match[1]);
+        const targetFile = resolveImportTarget(match[1], document.uri);
 
         if (!targetFile) {
           logDebug(`No match found for import: ${match[1]}`);
@@ -89,7 +113,7 @@ export function activate(context: vscode.ExtensionContext) {
             let match: RegExpExecArray | null;
 
             while ((match = regex.exec(line.text)) !== null) {
-              const targetFile = resolveImportTarget(match[1]);
+              const targetFile = resolveImportTarget(match[1], document.uri);
               if (!targetFile) continue;
 
               const start = line.text.indexOf(match[1]);
@@ -195,8 +219,6 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
-  context.subscriptions.push(setupCommand);
-
   const reloadAliasesCommand = vscode.commands.registerCommand(
     'vscodeScssAlias.reloadAliases',
     () => {
@@ -209,8 +231,7 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
-  context.subscriptions.push(setupCommand);
-  context.subscriptions.push(reloadAliasesCommand);
+  context.subscriptions.push(setupCommand, reloadAliasesCommand);
 }
 
 export function deactivate() {}

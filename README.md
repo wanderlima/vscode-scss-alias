@@ -78,7 +78,7 @@ Feel free to open [issues](https://github.com/wanderlima/vscode-scss-alias/issue
 
 ## 📦 Publishing
 
-This extension is published to both [VS Code Marketplace](https://marketplace.visualstudio.com/) and [Open VSX](https://open-vsx.org/) (for Cursor and other compatible editors).
+This extension is published to both [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=wanderlima.vscode-scss-alias) and [Open VSX](https://open-vsx.org/extension/wanderlima/vscode-scss-alias) (for Cursor and other compatible editors).
 
 ## 📜 License
 

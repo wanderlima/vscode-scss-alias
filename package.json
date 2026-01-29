@@ -3,7 +3,7 @@
   "displayName": "SCSS Alias",
   "description": "Visual Studio Code extension, click-to-go SCSS import/alias resolver for @use/@import syntax.",
   "main": "./dist/extension.js",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "publisher": "wanderlima",
   "license": "MIT",
   "engines": {
